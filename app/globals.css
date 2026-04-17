@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --charcoal: #8a72b1;
+  --ivory: #8a72b1;
+  --cart-ivory: #f3f0e7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: var(--charcoal);
+  color: #f3f0e7;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-brand), sans-serif;
+}
+
+h1,
+h2,
+h3,
+.brand-font {
+  font-family: var(--font-brand), sans-serif;
+}
+
+.marquee-track {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
