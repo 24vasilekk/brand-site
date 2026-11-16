@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="US — подарочные принты на одежде. Готовые принты и идеи для персональных подарков.">
+  <title>US — подарочные принты</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="US — на главную">
+      <img src="assets/us-logo.png" alt="US">
+      <span>print studio</span>
+    </a>
+    <nav aria-label="Основная навигация">
+      <a href="#catalog">Каталог</a>
+      <a href="#works">Работы</a>
+      <a href="#about">О нас</a>
+    </nav>
+    <a class="header-cta" href="#contacts">Написать нам <span>↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> Подарки, которые носят</div>
+        <h1 id="hero-title">Ваши моменты.<br><em>На любимой одежде.</em></h1>
+        <p>Создаём подарочные принты с характером — выбирайте готовый дизайн или берите идею за основу.</p>
+        <a class="primary-button" href="#catalog">Смотреть каталог <span>↓</span></a>
+      </div>
+      <div class="hero-art" aria-label="Футболка с принтом US">
+        <div class="orbit orbit-one">память</div>
+        <div class="orbit orbit-two">для своих</div>
+        <div class="shirt">
+          <div class="shirt-neck"></div>
+          <div class="shirt-print"><small>made for</small><strong>US</strong><small>and our moments</small></div>
+        </div>
+        <span class="scribble">единственный<br>в своём роде ↗</span>
+      </div>
+    </section>
+
+    <section class="catalog" id="catalog" aria-labelledby="catalog-title">
+      <div class="section-heading">
+        <div>
+          <span class="section-number">01</span>
+          <h2 id="catalog-title">Каталог</h2>
+        </div>
+        <p>Дизайны, которые превращают обычную вещь в личный подарок.</p>
+      </div>
+
+      <div class="catalog-tabs" role="tablist" aria-label="Разделы каталога">
+        <button class="tab active" id="tab-ready" role="tab" aria-selected="true" aria-controls="panel-ready" data-tab="ready">Готовые принты <span>04</span></button>
+        <button class="tab" id="tab-ideas" role="tab" aria-selected="false" aria-controls="panel-ideas" data-tab="ideas">Шаблонные идеи <span>04</span></button>
+      </div>
+
+      <div class="product-grid" id="panel-ready" role="tabpanel" aria-labelledby="tab-ready">
+        <article class="product-card">
+          <div class="product-visual visual-wine"><span class="badge">new</span><div class="mini-shirt milk-shirt"><b>любовь<br>в деталях</b></div></div>
+          <div class="product-meta"><div><h3>Любовь в деталях</h3><p>Футболка · молочная</p></div><span>от 2 490 ₽</span></div>
+        </article>
+        <article class="product-card">
+          <div class="product-visual visual-blue"><div class="mini-shirt wine-shirt"><b>US<br><small>since forever</small></b></div></div>
+          <div class="product-meta"><div><h3>Since forever</h3><p>Футболка · винная</p></div><span>от 2 490 ₽</span></div>
+        </article>
+        <article class="product-card">
+          <div class="product-visual visual-milk"><span class="badge dark">gift</span><div class="mini-shirt blue-shirt"><b>моё<br>счастье</b></div></div>
+          <div class="product-meta"><div><h3>Моё счастье</h3><p>Свитшот · небесный</p></div><span>от 3 490 ₽</span></div>
+        </article>
+        <article class="product-card">
+          <div class="product-visual visual-soft"><div class="mini-shirt white-shirt"><b>всегда<br>рядом.</b></div></div>
+          <div class="product-meta"><div><h3>Всегда рядом</h3><p>Футболка · белая</p></div><span>от 2 490 ₽</span></div>
+        </article>
+      </div>
+
+      <div class="product-grid" id="panel-ideas" role="tabpanel" aria-labelledby="tab-ideas" hidden>
+        <article class="idea-card"><span>01</span><div><p>Добавьте вашу дату</p><h3>Важный день</h3></div><div class="idea-mark">12<br><small>/ 05</small></div></article>
+        <article class="idea-card blue"><span>02</span><div><p>Добавьте вашу фразу</p><h3>Только вы поймёте</h3></div><div class="idea-mark quote">“</div></article>
+        <article class="idea-card pale"><span>03</span><div><p>Добавьте ваше фото</p><h3>Один кадр</h3></div><div class="photo-placeholder">ваше<br>фото</div></article>
+        <article class="idea-card wine"><span>04</span><div><p>Добавьте инициалы</p><h3>Ваша монограмма</h3></div><div class="idea-mark monogram">A+M</div></article>
+      </div>
+    </section>
+
+    <section class="works" id="works" aria-labelledby="works-title">
+      <div class="section-heading light">
+        <div><span class="section-number">02</span><h2 id="works-title">Наши работы</h2></div>
+        <p>Каждый принт начинается с истории. Вот как они выглядят на ткани.</p>
+      </div>
+      <div class="works-grid">
+        <figure class="work work-one"><div class="work-stage"><div class="work-shirt"><b>mom's<br>favorite</b></div></div><figcaption><span>01</span> Подарок для мамы</figcaption></figure>
+        <figure class="work work-two"><div class="work-stage"><div class="work-shirt"><b>best<br>friends</b><small>since 2014</small></div></div><figcaption><span>02</span> Парный принт</figcaption></figure>
+        <figure class="work work-three"><div class="work-stage"><div class="work-shirt"><b>наш<br>человек</b></div></div><figcaption><span>03</span> Для своего человека</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="about-intro"><span class="section-number">03</span><p>О бренде</p></div>
+      <div class="about-copy">
+        <h2 id="about-title">US — это про <em>вас.</em></h2>
+        <p>Мы переносим личные шутки, важные даты, любимые фотографии и тёплые слова на одежду. Чтобы подарок не пылился на полке, а становился частью каждого дня.</p>
+        <div class="values"><span>с вниманием</span><span>лично для вас</span><span>сделано с душой</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacts">
+    <div class="footer-title"><span>Есть идея?</span><h2>Давайте<br><em>создадим её.</em></h2></div>
+    <div class="socials" aria-label="Социальные сети">
+      <a href="#" aria-label="Telegram">Telegram <span>↗</span></a>
+      <a href="#" aria-label="VK">ВКонтакте <span>↗</span></a>
+      <a href="#" aria-label="Instagram">Instagram* <span>↗</span></a>
+    </div>
+    <div class="footer-bottom"><div class="brand footer-brand"><img src="assets/us-logo.png" alt="US"><span>print studio</span></div><p>© 2026 US Print Studio</p><p>*Instagram принадлежит Meta, признанной экстремистской организацией в РФ.</p></div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
