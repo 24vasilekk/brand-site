@@ -97,3 +97,34 @@ footer{background:var(--ink);color:var(--milk);padding:100px 4.5vw 30px}.footer-
 .catalog-dialog-close{display:inline-flex;align-items:center;gap:20px}.dialog-close{display:grid;place-items:center;font-size:0}.dialog-close .ui-close{width:16px;height:16px}.dialog-close .ui-close:before,.dialog-close .ui-close:after{width:19px;height:2px}
 @media(max-width:600px){.catalog-dialog-close{gap:9px}}
 .service-directory{display:grid;grid-template-columns:.8fr 1.2fr;background:#210a09;color:#fff7e6;padding:clamp(80px,10vw,150px) clamp(24px,6vw,112px);gap:8vw}.service-directory-heading h2{font-size:clamp(58px,7vw,118px);line-height:.82;letter-spacing:-.055em;margin:28px 0}.service-directory-heading h2 span{color:#95baeb}.service-directory-heading>p:last-child{max-width:390px;font-size:18px;line-height:1.45}.service-directory-list{border-top:1px solid rgba(255,247,230,.45)}.service-directory-list a{color:#fff7e6;text-decoration:none;display:grid;grid-template-columns:80px 1fr auto;gap:20px;align-items:center;padding:25px 0;border-bottom:1px solid rgba(255,247,230,.45);transition:.2s}.service-directory-list a:hover{color:#95baeb;transform:translateX(8px)}.service-directory-list small{letter-spacing:.12em}.service-directory-list h3{font-size:clamp(25px,2.5vw,42px);line-height:1;margin:0}.service-directory-list span{font-size:14px;display:flex;align-items:center;gap:16px}.service-directory-list .ui-arrow{background:#fff7e6}.service-directory-list a:hover .ui-arrow{background:#95baeb}@media(max-width:800px){.service-directory{grid-template-columns:1fr}.service-directory-list a{grid-template-columns:64px 1fr}.service-directory-list a>span{grid-column:2}.service-directory-list h3{font-size:28px}}@media(max-width:520px){.service-directory-list a{grid-template-columns:1fr}.service-directory-list a>*{grid-column:auto!important}.service-directory-list a>span{justify-content:space-between}}
+
+/* Compact navigation cards and calmer page-to-page movement */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.22s;animation-timing-function:ease-out}
+.service-directory-list a{grid-template-columns:58px minmax(0,1fr) auto auto;gap:18px}
+.service-directory-action,.blog-card-action{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:1px solid currentColor;border-radius:999px;padding:10px 13px;font-size:9px;line-height:1;text-transform:uppercase;letter-spacing:.12em;white-space:nowrap}
+.blog-card{grid-template-columns:72px minmax(0,1fr);transition:transform .2s ease,color .2s ease}
+.blog-card:hover{transform:translateY(-4px)}
+.blog-card-action{margin-top:25px;color:var(--ink)}
+@media(max-width:600px){
+  .service-directory{display:block;background:#210a09;color:#fff7e6;padding:62px 16px 70px;overflow:hidden}
+  .service-directory-heading h2{font-size:48px;line-height:.86;margin:20px 0}
+  .service-directory-heading>p:last-child{font-size:13px;line-height:1.45;max-width:300px}
+  .service-directory-list{margin-top:38px}
+  .service-directory-list a{grid-template-columns:28px minmax(0,1fr) auto;grid-template-areas:"num title action" "num meta action";gap:5px 10px;padding:15px 0;transform:none!important}
+  .service-directory-list a>*{grid-column:auto!important}
+  .service-directory-list small{grid-area:num;align-self:start;padding-top:3px;font-size:8px}
+  .service-directory-list h3{grid-area:title;font-size:21px;line-height:1.02;letter-spacing:-.035em}
+  .service-directory-list .service-directory-meta{grid-area:meta;display:block;font-size:10px;line-height:1.25;opacity:.72}
+  .service-directory-action{grid-area:action;align-self:center;padding:9px;font-size:0}
+  .service-directory-action .ui-arrow{width:12px;height:12px}
+  .blog-hero{padding:58px 16px 72px}
+  .blog-hero h1{font-size:13vw;line-height:.86}
+  .blog-hero-copy{font-size:13px;margin-top:30px;max-width:300px}
+  .blog-grid{padding:52px 16px 82px}
+  .blog-card,.blog-card:nth-child(2),.blog-card:nth-child(3),.blog-card:nth-child(4),.blog-card:nth-child(5){width:100%;margin:0 0 42px;display:grid;grid-template-columns:50px minmax(0,1fr);gap:10px;padding-top:13px}
+  .blog-card h2{font-size:29px;line-height:.94;margin-bottom:13px}
+  .blog-card p{font-size:12px;line-height:1.5}
+  .blog-card-action{width:max-content;margin-top:17px;padding:9px 11px;font-size:8px}
+  .blog-card-action .ui-arrow{width:11px;height:11px}
+}
