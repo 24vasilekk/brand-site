@@ -10,7 +10,7 @@
 <body>
   <header class="site-header">
     <a class="logo" href="#top" aria-label="US — на главную"><img src="assets/us-logo.png" alt="US"><span>print studio</span></a>
-    <nav aria-label="Основная навигация"><a href="#catalog">Шаблоны</a><a href="#works">Наши работы</a><a href="#about">О нас</a></nav>
+    <nav aria-label="Основная навигация"><a href="#catalog">Каталог</a><a href="#works">Наши работы</a><a href="#about">О нас</a></nav>
     <a class="header-link" href="#contacts">Обсудить принт <span>↗</span></a>
   </header>
 
@@ -21,7 +21,7 @@
         <p class="hero-kicker">подарки, которые остаются рядом</p>
         <h1>Сделано<br>про <span>вас.</span></h1>
         <p class="hero-note">не просто принт,<br>а ваша история</p>
-        <a class="round-link" href="#catalog"><span>Смотреть<br>шаблоны</span><b>↓</b></a>
+        <a class="round-link" href="#catalog"><span>Смотреть<br>каталог</span><b>↓</b></a>
       </div>
       <div class="hero-bottom"><p>Москва · печатаем на одежде</p><p>01 / 04</p><p>листайте вниз</p></div>
     </section>
@@ -29,28 +29,10 @@
     <section class="catalog" id="catalog">
       <div class="section-top reveal">
         <p class="section-label">01 — каталог</p>
-        <h2>Шаблонные<br><span>принты</span></h2>
-        <p class="section-intro">Выберите основу, а мы заменим даты, фразы, фото и детали на ваши. Ни один результат не повторяется.</p>
+        <h2>US / PRINT<br><span>ARCHIVE</span></h2>
+        <p class="section-intro">24 готовые позиции. Выберите свою — детали заказа уже будут собраны в сообщении для Telegram.</p>
       </div>
-
-      <div class="template-grid">
-        <article class="template template-date reveal">
-          <div class="template-art"><p class="tiny">день, который всё изменил</p><div class="date-big">14<span>/</span>06</div><p class="vasek-note">ваша дата здесь</p><div class="micro-line"><span>2026</span><span>мы запомним</span></div></div>
-          <div class="template-meta"><div><span>01</span><h3>Важный день</h3></div><a href="#contacts">Сделать своим ↗</a></div>
-        </article>
-        <article class="template template-phrase reveal">
-          <div class="template-art"><span class="tape">ваша фраза</span><p class="phrase">это<br><i>наша</i><br>песня</p><span class="sound">♪ 2:43 ━━━━━━━ 3:18</span></div>
-          <div class="template-meta"><div><span>02</span><h3>Только вы поймёте</h3></div><a href="#contacts">Сделать своим ↗</a></div>
-        </article>
-        <article class="template template-photo reveal">
-          <div class="template-art"><div class="photo-strip"><span style="--pos:15%"></span><span style="--pos:47%"></span><span style="--pos:78%"></span></div><p class="photo-copy">one<br>good<br>memory</p><p class="vasek-note">тот самый кадр</p></div>
-          <div class="template-meta"><div><span>03</span><h3>Один хороший кадр</h3></div><a href="#contacts">Сделать своим ↗</a></div>
-        </article>
-        <article class="template template-place reveal">
-          <div class="template-art"><p class="place-name">место,<br>где всё<br>началось</p><div class="coordinates">55°45′21″N<br>37°37′04″E</div><span class="pin">●</span><div class="map-lines"></div></div>
-          <div class="template-meta"><div><span>04</span><h3>Ваше место</h3></div><a href="#contacts">Сделать своим ↗</a></div>
-        </article>
-      </div>
+      <div class="catalog-grid" id="product-grid" aria-live="polite"></div>
     </section>
 
     <section class="works" id="works">
@@ -72,6 +54,18 @@
     <div class="socials" aria-label="Социальные сети"><a href="#"><span>Telegram</span><b>написать ↗</b></a><a href="#"><span>ВКонтакте</span><b>подписаться ↗</b></a><a href="#"><span>Instagram*</span><b>смотреть ↗</b></a></div>
     <div class="footer-bottom"><div class="logo footer-logo"><img src="assets/us-logo.png" alt="US"><span>print studio</span></div><p>© 2026 US Print Studio</p><p>*Instagram принадлежит Meta, признанной экстремистской организацией в РФ.</p></div>
   </footer>
+
+  <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-title">
+    <button class="dialog-close" type="button" aria-label="Закрыть">×</button>
+    <div class="order-visual"><span id="order-number">US / 001</span><img id="order-image" src="" alt=""></div>
+    <div class="order-copy">
+      <p class="section-label">ваш выбор</p>
+      <h2 id="order-title">Отправим<br><span>в Telegram?</span></h2>
+      <div class="message-preview"><span>Сообщение</span><p id="order-message"></p></div>
+      <button class="telegram-button" id="telegram-button" type="button">Продолжить в Telegram <b>↗</b></button>
+      <p class="share-note">На телефоне откроется меню отправки с приложенной фотографией. На компьютере — Telegram с фотографией по ссылке.</p>
+    </div>
+  </dialog>
   <script src="script.js"></script>
 </body>
 </html>

@@ -5,3 +5,86 @@ if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     hero.style.backgroundPosition = `center calc(50% + ${y}px)`;
   }, { passive: true });
 }
+
+const products = Array.from({ length: 24 }, (_, index) => {
+  const number = String(index + 1).padStart(3, '0');
+  const file = String(index + 1).padStart(2, '0');
+  return { number, file, title: `US / ${number}`, image: `assets/catalog/us-${file}.png` };
+});
+
+const productGrid = document.querySelector('#product-grid');
+const dialog = document.querySelector('#order-dialog');
+const orderImage = document.querySelector('#order-image');
+const orderNumber = document.querySelector('#order-number');
+const orderMessage = document.querySelector('#order-message');
+const telegramButton = document.querySelector('#telegram-button');
+let selectedProduct = null;
+
+products.forEach((product, index) => {
+  const card = document.createElement('article');
+  card.className = `product-card tone-${index % 4}`;
+  card.innerHTML = `
+    <div class="product-picture">
+      <span class="product-index">${product.number}</span>
+      <img src="${product.image}" alt="Футболка ${product.title}" loading="lazy">
+    </div>
+    <div class="product-info">
+      <div><span>print archive</span><h3>${product.title}</h3></div>
+      <button type="button" class="order-button" aria-label="Заказать ${product.title}">Заказать <b>↗</b></button>
+    </div>`;
+  card.querySelector('.order-button').addEventListener('click', () => openOrder(product));
+  productGrid.append(card);
+});
+
+const requestedOrder = new URLSearchParams(window.location.search).get('order');
+const initialProduct = products.find((product) => product.number === requestedOrder);
+if (initialProduct) openOrder(initialProduct, false);
+
+function openOrder(product, updateUrl = true) {
+  selectedProduct = product;
+  const message = `Здравствуйте! Хочу заказать модель ${product.title}. Подскажите, пожалуйста, доступные размеры, стоимость и сроки изготовления.`;
+  orderImage.src = product.image;
+  orderImage.alt = `Выбранная футболка ${product.title}`;
+  orderNumber.textContent = product.title;
+  orderMessage.textContent = message;
+  dialog.showModal();
+  document.body.classList.add('dialog-open');
+  if (updateUrl) history.replaceState({}, '', `${window.location.pathname}?order=${product.number}#catalog`);
+}
+
+function closeOrder() {
+  dialog.close();
+  document.body.classList.remove('dialog-open');
+  history.replaceState({}, '', `${window.location.pathname}#catalog`);
+}
+
+dialog.querySelector('.dialog-close').addEventListener('click', closeOrder);
+dialog.addEventListener('click', (event) => {
+  if (event.target === dialog) closeOrder();
+});
+dialog.addEventListener('close', () => {
+  document.body.classList.remove('dialog-open');
+  if (new URLSearchParams(window.location.search).has('order')) history.replaceState({}, '', `${window.location.pathname}#catalog`);
+});
+
+telegramButton.addEventListener('click', async () => {
+  if (!selectedProduct) return;
+  const imageUrl = new URL(selectedProduct.image, window.location.href).href;
+  const message = orderMessage.textContent;
+
+  try {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    const file = new File([blob], `${selectedProduct.title.replaceAll(' / ', '-')}.png`, { type: blob.type || 'image/png' });
+    const shareData = { files: [file], title: selectedProduct.title, text: message };
+    if (navigator.canShare?.(shareData)) {
+      await navigator.share(shareData);
+      return;
+    }
+  } catch (error) {
+    if (error?.name === 'AbortError') return;
+  }
+
+  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(message)}`;
+  window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+});
