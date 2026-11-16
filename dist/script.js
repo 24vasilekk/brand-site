@@ -9,7 +9,7 @@ if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 const products = Array.from({ length: 24 }, (_, index) => {
   const number = String(index + 1).padStart(3, '0');
   const file = String(index + 1).padStart(2, '0');
-  return { number, file, title: `US / ${number}`, image: `assets/catalog/us-${file}.png` };
+  return { number, file, title: `US / ${number}`, image: `assets/catalog/us-${file}.webp` };
 });
 
 const productGrid = document.querySelector('#product-grid');
@@ -29,7 +29,7 @@ function createProductCard(product, index) {
   card.innerHTML = `
     <div class="product-picture">
       <span class="product-index">${product.number}</span>
-      <img src="${product.image}" alt="Футболка ${product.title}" loading="lazy">
+      <img src="${product.image}" alt="Футболка ${product.title}" loading="${index < 4 ? 'eager' : 'lazy'}" fetchpriority="${index === 0 ? 'high' : 'auto'}" decoding="async">
     </div>
     <div class="product-info">
       <div><span>print archive</span><h3>${product.title}</h3></div>
@@ -108,7 +108,7 @@ telegramButton.addEventListener('click', async () => {
   try {
     const response = await fetch(imageUrl);
     const blob = await response.blob();
-    const file = new File([blob], `${selectedProduct.title.replaceAll(' / ', '-')}.png`, { type: blob.type || 'image/png' });
+    const file = new File([blob], `${selectedProduct.title.replaceAll(' / ', '-')}.webp`, { type: blob.type || 'image/webp' });
     const shareData = { files: [file], title: selectedProduct.title, text: message };
     if (navigator.canShare?.(shareData)) {
       await navigator.share(shareData);
