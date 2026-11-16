@@ -46,6 +46,7 @@ products.slice(0, 4).forEach((product, index) => productGrid.append(createProduc
 products.forEach((product, index) => fullProductGrid.append(createProductCard(product, index)));
 
 function openCatalog(updateUrl = true) {
+  sendGoal('catalog_open');
   catalogDialog.showModal();
   document.body.classList.add('dialog-open');
   if (updateUrl) history.replaceState({}, '', `${window.location.pathname}?catalog=all`);
@@ -73,6 +74,7 @@ if (initialProduct) openOrder(initialProduct, false);
 if (!initialProduct && new URLSearchParams(window.location.search).get('catalog') === 'all') openCatalog(false);
 
 function openOrder(product, updateUrl = true) {
+  sendGoal('product_order_open');
   selectedProduct = product;
   const message = `Здравствуйте! Хочу заказать модель ${product.title}. Подскажите, пожалуйста, доступные размеры, стоимость и сроки изготовления.`;
   orderImage.src = product.image;
