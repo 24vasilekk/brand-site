@@ -13,6 +13,9 @@ const products = Array.from({ length: 24 }, (_, index) => {
 });
 
 const productGrid = document.querySelector('#product-grid');
+const fullProductGrid = document.querySelector('#full-product-grid');
+const catalogDialog = document.querySelector('#catalog-dialog');
+const showAllCatalog = document.querySelector('#show-all-catalog');
 const dialog = document.querySelector('#order-dialog');
 const orderImage = document.querySelector('#order-image');
 const orderNumber = document.querySelector('#order-number');
@@ -20,7 +23,7 @@ const orderMessage = document.querySelector('#order-message');
 const telegramButton = document.querySelector('#telegram-button');
 let selectedProduct = null;
 
-products.forEach((product, index) => {
+function createProductCard(product, index) {
   const card = document.createElement('article');
   card.className = `product-card tone-${index % 4}`;
   card.innerHTML = `
@@ -32,13 +35,42 @@ products.forEach((product, index) => {
       <div><span>print archive</span><h3>${product.title}</h3></div>
       <button type="button" class="order-button" aria-label="Заказать ${product.title}">Заказать <b>↗</b></button>
     </div>`;
-  card.querySelector('.order-button').addEventListener('click', () => openOrder(product));
-  productGrid.append(card);
+  card.querySelector('.order-button').addEventListener('click', () => {
+    if (catalogDialog.open) catalogDialog.close();
+    openOrder(product);
+  });
+  return card;
+}
+
+products.slice(0, 4).forEach((product, index) => productGrid.append(createProductCard(product, index)));
+products.forEach((product, index) => fullProductGrid.append(createProductCard(product, index)));
+
+function openCatalog(updateUrl = true) {
+  catalogDialog.showModal();
+  document.body.classList.add('dialog-open');
+  if (updateUrl) history.replaceState({}, '', `${window.location.pathname}?catalog=all`);
+}
+
+function closeCatalog() {
+  catalogDialog.close();
+  document.body.classList.remove('dialog-open');
+  history.replaceState({}, '', `${window.location.pathname}#catalog`);
+}
+
+showAllCatalog.addEventListener('click', () => openCatalog());
+catalogDialog.querySelector('.catalog-dialog-close').addEventListener('click', closeCatalog);
+catalogDialog.addEventListener('click', (event) => {
+  if (event.target === catalogDialog) closeCatalog();
+});
+catalogDialog.addEventListener('close', () => {
+  if (!dialog.open) document.body.classList.remove('dialog-open');
+  if (new URLSearchParams(window.location.search).has('catalog')) history.replaceState({}, '', `${window.location.pathname}#catalog`);
 });
 
 const requestedOrder = new URLSearchParams(window.location.search).get('order');
 const initialProduct = products.find((product) => product.number === requestedOrder);
 if (initialProduct) openOrder(initialProduct, false);
+if (!initialProduct && new URLSearchParams(window.location.search).get('catalog') === 'all') openCatalog(false);
 
 function openOrder(product, updateUrl = true) {
   selectedProduct = product;

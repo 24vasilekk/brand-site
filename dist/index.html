@@ -33,12 +33,31 @@
         <p class="section-intro">24 готовые позиции. Выберите свою — детали заказа уже будут собраны в сообщении для Telegram.</p>
       </div>
       <div class="catalog-grid" id="product-grid" aria-live="polite"></div>
+      <div class="catalog-more reveal">
+        <button type="button" id="show-all-catalog"><span>Смотреть весь каталог</span><small>24 позиции</small><b>↗</b></button>
+      </div>
     </section>
 
-    <section class="works" id="works">
-      <div class="works-photo" aria-label="Мастерская US с видом на город"></div>
-      <div class="works-copy reveal"><p class="section-label">02 — наши работы</p><h2>Сначала<br>идея. Потом —<br><span>любимая вещь.</span></h2><p>Не клепаем одинаковые макеты. Подгоняем композицию под ткань, цвет и конкретного человека — пока принт не начинает ощущаться вашим.</p><a href="#contacts">Показать свою идею <span>↗</span></a></div>
-      <p class="works-scribble">печатали бы<br>прямо тут</p>
+    <section class="editorial" id="works">
+      <div class="editorial-head reveal">
+        <p class="section-label">02 — истории на вещах</p>
+        <h2>Не просто фото.<br><span>Это про своих.</span></h2>
+        <p>Реальные заказы US: семейные фразы, любимые кадры и те самые люди, которым хочется сказать чуть больше.</p>
+      </div>
+      <div class="story-grid">
+        <article class="story-card story-mama">
+          <div class="story-image"><img src="assets/editorial/mama.jpg" alt="Футболки US с семейными фотографиями" loading="lazy"><p>мама —<br>наш первый дом</p></div>
+          <div class="story-meta"><span>01</span><h3>Для той, кто помнит всё</h3><a href="#contacts">Сделать своим ↗</a></div>
+        </article>
+        <article class="story-card story-sister">
+          <div class="story-image"><img src="assets/editorial/sister.jpg" alt="Футболка US с принтом про сестру" loading="lazy"><p>одна история<br>на двоих</p></div>
+          <div class="story-meta"><span>02</span><h3>Родные — это навсегда</h3><a href="#contacts">Сделать своим ↗</a></div>
+        </article>
+        <article class="story-card story-packing">
+          <div class="story-image"><img src="assets/editorial/packing.jpg" alt="Упаковка заказа US и футболка с принтом I love you" loading="lazy"><div class="story-tape">готовим ваш подарок</div><p>всё важное —<br>в одной коробке</p></div>
+          <div class="story-meta"><span>03</span><h3>Собрано с вниманием</h3><a href="#contacts">Сделать своим ↗</a></div>
+        </article>
+      </div>
     </section>
 
     <section class="about" id="about">
@@ -54,6 +73,14 @@
     <div class="socials" aria-label="Социальные сети"><a href="#"><span>Telegram</span><b>написать ↗</b></a><a href="#"><span>ВКонтакте</span><b>подписаться ↗</b></a><a href="#"><span>Instagram*</span><b>смотреть ↗</b></a></div>
     <div class="footer-bottom"><div class="logo footer-logo"><img src="assets/us-logo.png" alt="US"><span>print studio</span></div><p>© 2026 US Print Studio</p><p>*Instagram принадлежит Meta, признанной экстремистской организацией в РФ.</p></div>
   </footer>
+
+  <dialog class="catalog-dialog" id="catalog-dialog" aria-labelledby="catalog-dialog-title">
+    <div class="catalog-dialog-head">
+      <div><p class="section-label">US / print archive</p><h2 id="catalog-dialog-title">Весь каталог <span>24</span></h2></div>
+      <button class="catalog-dialog-close" type="button" aria-label="Закрыть каталог">Закрыть <b>×</b></button>
+    </div>
+    <div class="catalog-dialog-body"><div class="catalog-grid full-product-grid" id="full-product-grid"></div></div>
+  </dialog>
 
   <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-title">
     <button class="dialog-close" type="button" aria-label="Закрыть">×</button>
