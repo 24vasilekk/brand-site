@@ -76,7 +76,12 @@ if (!initialProduct && new URLSearchParams(window.location.search).get('catalog'
 function openOrder(product, updateUrl = true) {
   sendGoal('product_order_open');
   selectedProduct = product;
-  const message = `Здравствуйте! Хочу заказать модель ${product.title}. Подскажите, пожалуйста, доступные размеры, стоимость и сроки изготовления.`;
+  const imageUrl = new URL(`/${product.image}`, window.location.origin).href;
+  const message = `Здравствуйте! Хочу заказать принт по шаблону ${product.title}.
+
+Вот выбранный вариант: ${imageUrl}
+
+Хочу адаптировать его под свои фотографии. Подскажите, пожалуйста, какие вещи и размеры доступны, сколько будет стоить заказ и когда он будет готов?`;
   orderImage.src = product.image;
   orderImage.alt = `Выбранная футболка ${product.title}`;
   orderNumber.textContent = product.title;
@@ -101,27 +106,11 @@ dialog.addEventListener('close', () => {
   if (new URLSearchParams(window.location.search).has('order')) history.replaceState({}, '', `${window.location.pathname}#catalog`);
 });
 
-telegramButton.addEventListener('click', async () => {
+telegramButton.addEventListener('click', () => {
   sendGoal('order_telegram');
   if (!selectedProduct) return;
-  const imageUrl = new URL(selectedProduct.image, window.location.href).href;
-  const message = orderMessage.textContent;
-
-  try {
-    const response = await fetch(imageUrl);
-    const blob = await response.blob();
-    const file = new File([blob], `${selectedProduct.title.replaceAll(' / ', '-')}.webp`, { type: blob.type || 'image/webp' });
-    const shareData = { files: [file], title: selectedProduct.title, text: message };
-    if (navigator.canShare?.(shareData)) {
-      await navigator.share(shareData);
-      return;
-    }
-  } catch (error) {
-    if (error?.name === 'AbortError') return;
-  }
-
-  const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(message)}`;
-  window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+  const telegramUrl = `https://t.me/usmgmt?text=${encodeURIComponent(orderMessage.textContent)}`;
+  window.location.assign(telegramUrl);
 });
 
 function sendGoal(goal) {
