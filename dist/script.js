@@ -33,7 +33,7 @@ function createProductCard(product, index) {
     </div>
     <div class="product-info">
       <div><span>print archive</span><h3>${product.title}</h3></div>
-      <button type="button" class="order-button" aria-label="Заказать ${product.title}">Заказать <b>↗</b></button>
+      <button type="button" class="order-button" aria-label="Заказать ${product.title}">Заказать <i class="ui-arrow" aria-hidden="true"></i></button>
     </div>`;
   card.querySelector('.order-button').addEventListener('click', () => {
     if (catalogDialog.open) catalogDialog.close();
@@ -100,6 +100,7 @@ dialog.addEventListener('close', () => {
 });
 
 telegramButton.addEventListener('click', async () => {
+  sendGoal('order_telegram');
   if (!selectedProduct) return;
   const imageUrl = new URL(selectedProduct.image, window.location.href).href;
   const message = orderMessage.textContent;
@@ -119,4 +120,13 @@ telegramButton.addEventListener('click', async () => {
 
   const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(imageUrl)}&text=${encodeURIComponent(message)}`;
   window.open(telegramUrl, '_blank', 'noopener,noreferrer');
+});
+
+function sendGoal(goal) {
+  const counterId = window.US_YM_COUNTER_ID;
+  if (counterId && typeof window.ym === 'function') window.ym(counterId, 'reachGoal', goal);
+}
+
+document.querySelectorAll('[data-goal]').forEach((link) => {
+  link.addEventListener('click', () => sendGoal(link.dataset.goal));
 });
