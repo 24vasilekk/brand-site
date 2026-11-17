@@ -76,12 +76,7 @@ if (!initialProduct && new URLSearchParams(window.location.search).get('catalog'
 function openOrder(product, updateUrl = true) {
   sendGoal('product_order_open');
   selectedProduct = product;
-  const imageUrl = new URL(`/${product.image}`, window.location.origin).href;
-  const message = `Здравствуйте! Хочу заказать принт по шаблону ${product.title}.
-
-Вот выбранный вариант: ${imageUrl}
-
-Хочу адаптировать его под свои фотографии. Подскажите, пожалуйста, какие вещи и размеры доступны, сколько будет стоить заказ и когда он будет готов?`;
+  const message = `Здравствуйте! Хочу заказать принт ${product.title} со своими фотографиями. Подскажите, пожалуйста, какие вещи и размеры доступны и как оформить заказ?`;
   orderImage.src = product.image;
   orderImage.alt = `Выбранная футболка ${product.title}`;
   orderNumber.textContent = product.title;
