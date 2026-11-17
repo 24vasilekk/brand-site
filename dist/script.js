@@ -6,11 +6,19 @@ if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   }, { passive: true });
 }
 
-const products = Array.from({ length: 24 }, (_, index) => {
+const archiveProducts = Array.from({ length: 24 }, (_, index) => {
   const number = String(index + 1).padStart(3, '0');
   const file = String(index + 1).padStart(2, '0');
   return { number, file, title: `US / ${number}`, image: `assets/catalog/us-${file}.webp` };
 });
+
+const newYearProducts = Array.from({ length: 7 }, (_, index) => {
+  const number = String(index + 25).padStart(3, '0');
+  const file = String(index + 1).padStart(2, '0');
+  return { number, file, title: `US / ${number}`, image: `assets/catalog/new-year-${file}.webp` };
+});
+
+const products = [...archiveProducts, ...newYearProducts];
 
 const productGrid = document.querySelector('#product-grid');
 const fullProductGrid = document.querySelector('#full-product-grid');
