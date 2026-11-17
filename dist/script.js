@@ -18,7 +18,13 @@ const newYearProducts = Array.from({ length: 7 }, (_, index) => {
   return { number, file, title: `US / ${number}`, image: `assets/catalog/new-year-${file}.webp` };
 });
 
-const products = [...archiveProducts, ...newYearProducts];
+const latestProducts = Array.from({ length: 10 }, (_, index) => {
+  const number = String(index + 32).padStart(3, '0');
+  const file = String(index + 1).padStart(2, '0');
+  return { number, file, title: `US / ${number}`, image: `assets/catalog/drop-02-${file}.webp` };
+});
+
+const products = [...archiveProducts, ...newYearProducts, ...latestProducts];
 
 const productGrid = document.querySelector('#product-grid');
 const fullProductGrid = document.querySelector('#full-product-grid');
